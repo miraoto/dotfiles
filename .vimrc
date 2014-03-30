@@ -68,6 +68,7 @@ set listchars=trail:_,eol:¬,tab:^\  " Listモードに利用する文字を設�
 set laststatus=2  " 最下ウィンドウにステータスを表示
 set nowildmenu    " 
 set wildmode=longest " 
+set visualbell t_vb= " ビープ音なし
 " }}}
 
 
@@ -89,7 +90,7 @@ set smartcase  " 検索文字に大文字がある場合大文字/小文字を�
 set wrapscan   " 検索がファイル末尾まで進んだら、ファイル先頭から再び検索
 " }}}
 
-" {{{
+" syntastic {{{
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map={
@@ -101,6 +102,24 @@ let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_php_checkers=['php']
 let g:syntastic_quite_warnings=0
+" }}}
+
+" neocomplcache
+" http://vim-users.jp/2010/10/hack177/¬
+" {{{
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 0
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
 " }}}
 
 " for PHP {{{
