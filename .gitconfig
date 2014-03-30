@@ -1,0 +1,28 @@
+[user]
+  name = hogehoge
+  email = hogehoge@mail
+
+[core]
+  pager = less -r
+  editor = vim
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = auto
+
+[web]
+  browser = google-chrome
+
+[alias]
+  st = status
+  sh = show
+  co = checkout
+  dw = diff -C --color-words
+  lg = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d'
+  l  = log
+
+[pager]
+  diff = diff-highlight | less
+  show = diff-highlight | less
+  log = diff-highlight | less
+
