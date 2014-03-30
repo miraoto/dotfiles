@@ -12,6 +12,7 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'itchyny/lightline.vim' " ステータスバーを装飾
+NeoBundle 'scrooloose/syntastic' " 各種シンタックスチェック
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -86,6 +87,20 @@ set hlsearch   " 検索マッチ文字列をハイライト
 set ignorecase " 大文字/小文字を区別しない
 set smartcase  " 検索文字に大文字がある場合大文字/小文字を区別する
 set wrapscan   " 検索がファイル末尾まで進んだら、ファイル先頭から再び検索
+" }}}
+
+" {{{
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map={
+\  'mode': 'passive',
+\ 'active_filetypes': ['php', 'ruby', 'javascript'],
+\ 'passive_filetypes': []
+\}
+let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_php_checkers=['php']
+let g:syntastic_quite_warnings=0
 " }}}
 
 " for PHP {{{
