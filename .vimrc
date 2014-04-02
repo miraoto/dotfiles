@@ -11,8 +11,8 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'itchyny/lightline.vim' " ステータスバーを装飾
-NeoBundle 'scrooloose/syntastic' " 各種シンタックスチェック
+NeoBundle 'itchyny/lightline.vim'  " ステータスバーを装飾
+NeoBundle 'scrooloose/syntastic'   " 各種シンタックスチェック
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -21,6 +21,8 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle "kana/vim-smartinput"
+NeoBundle "cohama/vim-smartinput-endwise"
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'vim-jp/vimdoc-ja' " ドキュメントの日本語化
 " }}}
@@ -130,8 +132,6 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
 " for PHP {{{
 autocmd FileType php autocmd BufWritePre * :%s/\t/    /ge " ファイル保存時にタブをスペースに変換
-" autocmd FileType php set makeprg=php\ -l\ % " ファイル保存時にPHPのシンタックスエラーをチェック
-" autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endif
 " }}}
 
 " for ruby {{{
@@ -164,6 +164,9 @@ nnoremap <silent><Space>s :VimShell<CR>
 " nnoremap ,<C-]> :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
 " }}}
 
+" vim smartinput_endwise {{{
+call smartinput_endwise#define_default_rules()
+" }}}
 
 filetype plugin indent on
 
