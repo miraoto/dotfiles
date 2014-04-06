@@ -21,10 +21,17 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle "kana/vim-smartinput"
-NeoBundle "cohama/vim-smartinput-endwise"
+NeoBundle 'kana/vim-smartinput' " 括弧などの補完
+NeoBundle 'cohama/vim-smartinput-endwise' " vim-endwiseみたいなもの
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'vim-jp/vimdoc-ja' " ドキュメントの日本語化
+NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+  \ 'rev' : 'development',
+  \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
+  \ 'autoload' : {
+  \   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
+  \   'unite_sources' : ['tags']
+  \ }}
 " }}}
 
 " NeoBundle#ruby {{{
@@ -55,8 +62,8 @@ set showmatch   " 対応する括弧をハイライト
 syntax on " シンタックスハイライト有効
 set ambiwidth=double "
 set autoindent    "_
-set cmdheight=2   " メッセージ表示欄を2行確保"
-set expandtab     " タブ入力を複数の空白入力に置き換える"
+set cmdheight=2   " メッセージ表示欄を2行確保
+set expandtab     " タブ入力を複数の空白入力に置き換える
 set ruler         " カーソル行表示
 set nu            " 行番号表示
 set showcmd       " コマンドの一部を画面の最下行に表示
@@ -75,7 +82,7 @@ set visualbell t_vb= " ビープ音なし
 
 
 " ファイル処理 {{{
-set autoread      " 外部でファイルに変更がされた場合は読みなおす"
+set autoread      " 外部でファイルに変更がされた場合は読みなおす
 set hidden        " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
 set history=50    " コマンドラインの履歴を50件保存する
 set noswapfile    " ファイル保存時にスワップファイルを作らない
@@ -157,6 +164,30 @@ nnoremap <silent><Space>t :tabnew<CR>
 " VimShell Keymaps {{{
 " VimShell起動
 nnoremap <silent><Space>s :VimShell<CR>
+" }}}
+
+" alpaca_tags
+let g:alpaca_update_tags_config = {
+  \ '_' : '-R --sort=yes --languages=-js,html,css',
+  \ 'js' : '--languages=+js',
+  \ '-js' : '--languages=-js,JavaScript',
+  \ 'php' : '--languages=+php',
+  \ 'ruby': '--languages=+Ruby',
+  \ 'css' : '--languages=+css',
+  \ '-style': '--languages=-css,scss,js,JavaScript,html'
+  \ }
+
+augroup AlpacaTags
+  autocmd!
+  if exists(':Tags')
+    autocmd BufWritePost *.rb TagsUpdate ruby
+    autocmd BufWritePost *.php TagsUpdate php
+    autocmd BufWritePost *.css TagsUpdate css
+    autocmd BufWritePost *.js TagsUpdate js
+    autocmd BufEnter * TagsSet
+  endif
+augroup END
+nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
 " }}}
 
 " ctags Keymaps {{{
