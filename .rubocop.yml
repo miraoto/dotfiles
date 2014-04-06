@@ -1,0 +1,16 @@
+# Use UTF-8 as the source file encoding.
+Encoding:
+  Enabled: false
+
+# Limit lines to 100 characters.
+LineLength:
+  Max: 100
+
+# Avoid methods longer than 25 lines of code
+MethodLength:
+  Max: 25
+
+# Use only ascii symbols in comments.
+AsciiComments:
+  Enabled: false
+
