@@ -20,10 +20,12 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim' " 最近利用したファイルを表示
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'kana/vim-smartinput' " 括弧などの補完
 NeoBundle 'cohama/vim-smartinput-endwise' " vim-endwiseみたいなもの
 NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'tomtom/tcomment_vim' " 複数行コメントアウト
 NeoBundle 'vim-jp/vimdoc-ja' " ドキュメントの日本語化
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
   \ 'rev' : 'development',
@@ -142,7 +144,7 @@ autocmd FileType php autocmd BufWritePre * :%s/\t/    /ge " ファイル保存�
 " }}}
 
 " for ruby {{{
-autocmd BufEnter *.rb,*.slim :set ts=2 sw=2 sts=0
+autocmd BufEnter *.rb,*.rake,*.slim :set ts=2 sw=2 sts=0
 " }}}
 
 " Filer Keymaps {{{
@@ -198,6 +200,12 @@ nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<
 " vim smartinput_endwise {{{
 call smartinput_endwise#define_default_rules()
 " }}}
+
+" Unite Keymaps {{{
+noremap <C-N> :Unite -buffer-name=file file<CR>
+noremap <C-Z> :Unite file_mru<CR>
+" }}}
+
 
 filetype plugin indent on
 
