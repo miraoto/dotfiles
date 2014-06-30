@@ -22,11 +22,13 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim' " 最近利用したファイルを表示
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'basyura/unite-rails'
 NeoBundle 'kana/vim-smartinput' " 括弧などの補完
 NeoBundle 'cohama/vim-smartinput-endwise' " vim-endwiseみたいなもの
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'tomtom/tcomment_vim' " 複数行コメントアウト
 NeoBundle 'vim-jp/vimdoc-ja' " ドキュメントの日本語化
+NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
   \ 'rev' : 'development',
   \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
