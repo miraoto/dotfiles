@@ -24,6 +24,7 @@ NeoBundle 'Shougo/neomru.vim' " 最近利用したファイルを表示
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'kana/vim-smartinput' " 括弧などの補完
+NeoBundle 'kana/vim-submode'
 NeoBundle 'cohama/vim-smartinput-endwise' " vim-endwiseみたいなもの
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'tomtom/tcomment_vim' " 複数行コメントアウト
@@ -115,6 +116,17 @@ let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_php_checkers=['php']
 let g:syntastic_quite_warnings=0
+" }}}
+
+" vim-submode {{{
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>-')
+call submode#map('winsize', 'n', '', '-', '<C-w>+')
 " }}}
 
 " neocomplcache
