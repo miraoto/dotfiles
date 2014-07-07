@@ -161,11 +161,17 @@ autocmd FileType php autocmd BufWritePre * :%s/\t/    /ge " ファイル保存�
 autocmd BufEnter *.rb,*.rake,*.slim :set ts=2 sw=2 sts=0
 " }}}
 
+" forbid arrow Keymaps {{{
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+" }}}
+
 " Filer Keymaps {{{
 nnoremap <silent><Space>j  :VimFilerExplorer<CR> " ファイラー起動
 " nnoremap <silent><Space>jj  :VimFiler<CR> " プロジェクトファイラー起動
 " }}}
-
 
 " Escape Keymaps {{{
 inoremap <silent> jj <ESC>
