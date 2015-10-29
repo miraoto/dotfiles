@@ -11,6 +11,7 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'itchyny/lightline.vim'  " ステータスバーを装飾
 NeoBundle 'scrooloose/syntastic'   " 各種シンタックスチェック
 NeoBundle 'Shougo/neocomplcache'
@@ -39,14 +40,20 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
   \ }}
 " }}}
 
+" NeoBundle#elixir {{{
+NeoBundle 'elixir-lang/vim-elixir'
+" }}}
+
 " NeoBundle#ruby {{{
 NeoBundle 'tpope/vim-rails'   " railsプロジェクト間の移動
+NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tpope/vim-endwise' " 対になる文字を補完
 " }}}
 
-
 " colorschema {{{
-colorscheme desert
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
 " }}}
 
 " 文字コード {{{
