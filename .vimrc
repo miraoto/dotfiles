@@ -20,6 +20,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'szw/vim-tags'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim' " 最近利用したファイルを表示
 NeoBundle 'Shougo/unite-outline'
@@ -231,6 +232,12 @@ call smartinput_endwise#define_default_rules()
 " Unite Keymaps {{{
 noremap <C-N> :Unite -buffer-name=file file<CR>
 noremap <C-Z> :Unite file_mru<CR>
+" }}}
+
+" vim-tags {{{
+let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -f tags -R . 2>/dev/null"
+let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R -f Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
+set tags+=tags,Gemfile.lock.tags
 " }}}
 
 

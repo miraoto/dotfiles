@@ -1,16 +1,27 @@
-# Use UTF-8 as the source file encoding.
-Encoding:
-  Enabled: false
 
-# Limit lines to 100 characters.
-LineLength:
-  Max: 100
-
-# Avoid methods longer than 25 lines of code
-MethodLength:
-  Max: 25
-
-# Use only ascii symbols in comments.
 AsciiComments:
   Enabled: false
 
+MethodLength:
+  Max: 30
+
+LineLength:
+  Max: 160
+
+AbcSize:
+  Max: 40
+
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - bin/*
+    - config/unicorn.rb
+    - config/unicorn_staging.rb
+    - db/schema.rb
+    - db/migrate/*
+    - Guardfile
+    - Gemfile
+    - vendor/bundle/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - tmp/**/*

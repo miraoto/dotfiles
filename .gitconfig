@@ -26,3 +26,6 @@
   show = diff-highlight | less
   log = diff-highlight | less
 
+[diff]
+  algorithm = histogram
+
