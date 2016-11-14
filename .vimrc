@@ -8,7 +8,8 @@ if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -51,6 +52,7 @@ NeoBundle 'tpope/vim-rails'   " railsプロジェクト間の移動
 NeoBundle 'slim-template/vim-slim'
 NeoBundle 'tpope/vim-endwise' " 対になる文字を補完
 " }}}
+call neobundle#end()
 
 " colorschema {{{
 set background=dark
