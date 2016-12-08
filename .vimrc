@@ -227,11 +227,11 @@ let g:alpaca_update_tags_config = {
 augroup AlpacaTags
   autocmd!
   if exists(':Tags')
-    autocmd BufWritePost *.rb TagsUpdate ruby
-    autocmd BufWritePost *.php TagsUpdate php
-    autocmd BufWritePost *.css TagsUpdate css
-    autocmd BufWritePost *.js TagsUpdate js
-    autocmd BufEnter * TagsSet
+"    autocmd BufWritePost *.rb TagsUpdate ruby
+"    autocmd BufWritePost *.php TagsUpdate php
+"    autocmd BufWritePost *.css TagsUpdate css
+"    autocmd BufWritePost *.js TagsUpdate js
+"    autocmd BufEnter * TagsSet
   endif
 augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
