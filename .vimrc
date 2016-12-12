@@ -3,56 +3,43 @@ set nocompatible
 filetype off               "ファイルタイプ関連を無効化
 filetype plugin indent off "ファイルタイプ関連を無効化
 
-" NeoBundle {{{
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+set runtimepath+=~/.vim/dein/dein.vim
+call dein#begin(expand('~/.vim/dein'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'itchyny/lightline.vim'  " ステータスバーを装飾
-NeoBundle 'scrooloose/syntastic'   " 各種シンタックスチェック
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'szw/vim-tags'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim' " 最近利用したファイルを表示
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'basyura/unite-rails'
-NeoBundle 'kana/vim-smartinput' " 括弧などの補完
-NeoBundle 'kana/vim-submode'
-NeoBundle 'cohama/vim-smartinput-endwise' " vim-endwiseみたいなもの
-NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'tomtom/tcomment_vim' " 複数行コメントアウト
-NeoBundle 'vim-jp/vimdoc-ja' " ドキュメントの日本語化
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('itchyny/lightline.vim')  " ステータスバーを装飾
+call dein#add('scrooloose/syntastic')   " 各種シンタックスチェック
+call dein#add('Shougo/vimfiler')
+call dein#add('Shougo/vimproc')
+call dein#add('Shougo/vimshell')
+call dein#add('szw/vim-tags')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neomru.vim') " 最近利用したファイルを表示
+call dein#add('Shougo/unite-outline')
+call dein#add('basyura/unite-rails')
+call dein#add('kana/vim-smartinput') " 括弧などの補完
+call dein#add('kana/vim-submode')
+call dein#add('cohama/vim-smartinput-endwise') " vim-endwiseみたいなもの
+call dein#add('tsukkee/unite-tag')
+call dein#add('tomtom/tcomment_vim') " 複数行コメントアウト
+call dein#add('vim-jp/vimdoc-ja') " ドキュメントの日本語化
+call dein#add('ekalinin/Dockerfile.vim')
+call dein#add('kchmck/vim-coffee-script')
+call dein#add('alpaca-tc/alpaca_tags', {
   \ 'rev' : 'development',
   \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
   \ 'autoload' : {
   \   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
   \   'unite_sources' : ['tags']
-  \ }}
-" }}}
-
-" NeoBundle#elixir {{{
-NeoBundle 'elixir-lang/vim-elixir'
+  \ }})
 " }}}
 
 " NeoBundle#ruby {{{
-NeoBundle 'tpope/vim-rails'   " railsプロジェクト間の移動
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'tpope/vim-endwise' " 対になる文字を補完
+call dein#add('tpope/vim-rails')   " railsプロジェクト間の移動
+call dein#add('slim-template/vim-slim')
+call dein#add('tpope/vim-endwise') " 対になる文字を補完
 " }}}
-call neobundle#end()
+call dein#end()
 
 " colorschema {{{
 set background=dark
@@ -128,34 +115,6 @@ let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_php_checkers=['php']
 let g:syntastic_quite_warnings=0
 " }}}
-
-" vim-submode {{{
-call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-call submode#map('winsize', 'n', '', '>', '<C-w>>')
-call submode#map('winsize', 'n', '', '<', '<C-w><')
-call submode#map('winsize', 'n', '', '+', '<C-w>-')
-call submode#map('winsize', 'n', '', '-', '<C-w>+')
-" }}}
-
-" neocomplcache
-" http://vim-users.jp/2010/10/hack177/¬
-" {{{
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -252,12 +211,14 @@ noremap <C-Z> :Unite file_mru<CR>
 " }}}
 
 " vim-tags {{{
-let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -f tags -R . 2>/dev/null"
-let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R -f Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
+let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -f tags -R . 2>/dev/null"
+let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -R -f Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
 set tags+=tags,Gemfile.lock.tags
 " }}}
 
 
 filetype plugin indent on
 
-NeoBundleCheck
+if dein#check_install()
+  call dein#install()
+endif
