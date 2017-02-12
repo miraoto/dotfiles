@@ -131,6 +131,10 @@ autocmd FileType php autocmd BufWritePre * :%s/\t/    /ge " ファイル保存�
 autocmd BufEnter *.rb,*.rake,*.slim :set ts=2 sw=2 sts=0
 " }}}
 
+" for javascript {{{
+autocmd BufEnter *.js :set ts=2 sw=2 sts=0 et
+" }}}
+
 " for coffeescript {{{
 autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 " インデント設定
@@ -144,6 +148,9 @@ autocmd QuickFixCmdPost * nested cwindow | redraw!
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 " }}}
 
+" for digdag {{{
+au BufNewFile,BufRead *.dig setf yaml
+" }}}
 
 " forbid arrow Keymaps {{{
 noremap <Up> <Nop>
