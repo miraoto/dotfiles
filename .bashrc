@@ -6,13 +6,14 @@
 if [ -f /etc/bashrc ]; then
          source /etc/bashrc
 fi
+if [ -f .env.sample ] ; then
+    source .env.sample
+fi
 #
 # Terminal Name
 #
 shopt -s checkwinsize
 PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]\[\033[00m\] \$ '
-#    [ `whoami` = "root" ] && PS1="\[\e[1;31m\][\u@\h (dev_dev) \W]\\$\[\e[0m\] "
-#    [ `whoami` = "livesen" ] && PS1="\[\e[1;31m\][\u@\h (dev_dev) \W]\\$\[\e[0m\] "
 #
 # Emvironment path
 #
