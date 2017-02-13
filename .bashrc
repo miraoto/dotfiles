@@ -4,21 +4,29 @@
 #
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-         source /etc/bashrc
+  source /etc/bashrc
 fi
 if [ -f .env.sample ] ; then
-    source .env.sample
+  source .env.sample
 fi
 #
 # Terminal Name
 #
 shopt -s checkwinsize
-PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]\[\033[00m\] \$ '
+source /usr/local/bin/git-completion.bash
+source /usr/local/bin/git-prompt.sh
+export PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+
 #
 # Emvironment path
 #
+export ANDROID_HOME=~/Library/Android/sdk
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin
+export PATH="/usr/local/heroku/bin:/usr/local/git/bin:$PATH"
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+export PATH="$HOME/bin:$PATH"
 #
 # Encoding
 #
@@ -50,11 +58,6 @@ alias vi='/usr/bin/vim'
 alias vim='/usr/bin/vim'
 alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
+alias home='cd ~/Documents/Products'
 export PGDATA=/usr/local/var/postgres
 
-export ANDROID_HOME=~/Library/Android/sdk
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:/usr/local/git/bin:$PATH"
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-export PATH="$HOME/bin:$PATH"
