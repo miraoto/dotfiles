@@ -135,6 +135,10 @@ autocmd BufEnter *.rb,*.rake,*.slim :set ts=2 sw=2 sts=0
 autocmd BufEnter *.js :set ts=2 sw=2 sts=0 et
 " }}}
 
+" for yaml {{{
+autocmd BufEnter *.yml :set ts=2 sw=2 sts=0 et
+" }}}
+
 " for coffeescript {{{
 autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 " インデント設定
