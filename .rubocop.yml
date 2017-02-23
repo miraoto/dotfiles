@@ -1,3 +1,21 @@
+AllCops:
+  DisplayStyleGuide: true
+  StyleGuideBaseURL: https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md
+  TargetRubyVersion: 2.4
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - Guardfile
+    - Gemfile
+    - Procfile
+    - vendor/bundle/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - tmp/**/*
+
+Documentation:
+  Enabled: false
 
 AsciiComments:
   Enabled: false
@@ -11,17 +29,28 @@ LineLength:
 AbcSize:
   Max: 40
 
-AllCops:
-  RunRailsCops: true
-  Exclude:
-    - bin/*
-    - config/unicorn.rb
-    - config/unicorn_staging.rb
-    - db/schema.rb
-    - db/migrate/*
-    - Guardfile
-    - Gemfile
-    - vendor/bundle/**/*
-    - spec/rails_helper.rb
-    - spec/spec_helper.rb
-    - tmp/**/*
+ParameterLists:
+  Max: 8
+  CountKeywordArgs: true
+
+Rails:
+  Enabled: true
+
+# http://www.rubydoc.info/github/bbatsov/RuboCop/RuboCop/Cop/Style/NestedParenthesizedCalls
+NestedParenthesizedCalls:
+  Enabled: false
+# http://www.rubydoc.info/github/bbatsov/RuboCop/RuboCop/Cop/Style/UnneededInterpolation
+UnneededInterpolation:
+  Enabled: false
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SignalException
+SignalException:
+  Enabled: false
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MutableConstant
+MutableConstant:
+  Enabled: false
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/FrozenStringLiteralComment
+FrozenStringLiteralComment:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
