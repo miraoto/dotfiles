@@ -31,5 +31,5 @@
 [diff]
   algorithm = histogram
 
-[includeIf "gitdir:Documents/Products/Private/"]
+[includeIf "gitdir:~/Documents/Products/Private/"]
   path = ~/.gitconfig-private
