@@ -16,17 +16,12 @@ shopt -s checkwinsize
 source /usr/local/bin/git-completion.bash
 source /usr/local/bin/git-prompt.sh
 export PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
-
 #
 # Emvironment path
 #
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=$PATH:$HOME/.rvm/bin
-export PATH="/usr/local/heroku/bin:/usr/local/git/bin:$PATH"
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-export PATH="$HOME/bin:$PATH"
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/heroku/bin:$PATH
+export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH
 #
 # Encoding
 #
