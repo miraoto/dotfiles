@@ -38,6 +38,7 @@ pixman
 pkg-config
 postgresql
 pyenv
+pyenv-virtualenv
 python
 rbenv
 readline
