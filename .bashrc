@@ -19,7 +19,7 @@ export PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]$(__git_ps1)\[\033[00m\]\
 #
 # Emvironment path
 #
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH
 #
