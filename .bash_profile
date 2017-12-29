@@ -2,6 +2,10 @@
 if [ $SHLVL = 1 ]; then
   tmux
 fi
+# loading user setting .bashrc
+if [ -f ~/.bashrc ] ; then
+  source ~/.bashrc
+fi
 # Setup ssh-agent
 if [ -f ~/.ssh-agent ]; then
   . ~/.ssh-agent
@@ -12,12 +16,9 @@ if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
 fi
 ssh-add -l >& /dev/null || ssh-add
 
-eval "$(rbenv init -)";
+eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-# loading user setting .bashrc
-if [ -f ~/.bashrc ] ; then
-  source ~/.bashrc
-fi
