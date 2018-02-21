@@ -67,11 +67,13 @@ export PYENV_ROOT=$HOME/.pyenv
 export PATH=$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
+export PATH=$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/.ndenv/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PGDATA=/usr/local/var/postgres
 #
 # Eval version management tools
 #
 eval "$(rbenv init -)"
+eval "$(ndenv init -)"
 # eval "$(pyenv init -)"
