@@ -46,6 +46,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias grep='grep -G -ERUIn'
 alias gpo='git push origin'
+alias wip='git commit --allow-empty -m'
 #
 # unset env
 #
