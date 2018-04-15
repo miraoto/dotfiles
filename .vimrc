@@ -25,6 +25,7 @@ call dein#add('tomtom/tcomment_vim') " 複数行コメントアウト
 call dein#add('vim-jp/vimdoc-ja') " ドキュメントの日本語化
 call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('kchmck/vim-coffee-script')
+call dein#add('airblade/vim-gitgutter')
 call dein#add('alpaca-tc/alpaca_tags', {
   \ 'rev' : 'development',
   \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
