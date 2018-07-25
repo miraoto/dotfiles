@@ -23,6 +23,7 @@ call dein#add('cohama/vim-smartinput-endwise') " vim-endwiseみたいなもの
 call dein#add('tsukkee/unite-tag')
 call dein#add('tomtom/tcomment_vim') " 複数行コメントアウト
 call dein#add('vim-jp/vimdoc-ja') " ドキュメントの日本語化
+call dein#add('posva/vim-vue')
 call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('airblade/vim-gitgutter')
@@ -138,6 +139,11 @@ autocmd BufEnter *.js :set ts=2 sw=2 sts=0 et
 
 " for yaml {{{
 autocmd BufEnter *.yml :set ts=2 sw=2 sts=0 et
+" }}}
+
+" for vue {{{
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd FileType vue    setlocal sw=2 sts=2 ts=2 et
 " }}}
 
 " for coffeescript {{{
