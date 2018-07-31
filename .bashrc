@@ -13,11 +13,11 @@ fi
 # Setup ssh-agent
 #
 if [ -f ~/.ssh-agent ]; then
-  . ~/.ssh-agent
+  eval `ssh-agent`
 fi
 if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
   ssh-agent > ~/.ssh-agent
-  . ~/.ssh-agent
+  eval `ssh-agent`
 fi
 ssh-add -l >& /dev/null || ssh-add
 #
@@ -37,7 +37,6 @@ export HISTSIZE=10000
 # alias command list
 #
 alias vi='vim'
-alias crontab='crontab -i'
 alias du='du -h'
 alias ls='ls -FG'
 alias ll='ls -laG'
@@ -60,7 +59,12 @@ alias vi='/usr/bin/vim'
 alias vim='/usr/bin/vim'
 alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
+alias co='git checkout'
 alias home='cd ~/Documents/Products'
+# For Development shortcut
+alias start='bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
+alias start-prof='ENABLE_RACK_PROFER=1 bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
+alias raketasks='bundle exec rake -vT'
 #
 # Emvironment path
 #
@@ -68,13 +72,13 @@ export PYENV_ROOT=$HOME/.pyenv
 export PATH=$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH
-export PATH=$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
-export PATH=$HOME/.ndenv/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PGDATA=/usr/local/var/postgres
 #
 # Eval version management tools
 #
 eval "$(rbenv init -)"
-eval "$(ndenv init -)"
 # eval "$(pyenv init -)"
+export PATH="${HOME}/.ndenv/bin:${PATH}"
+eval "$(ndenv init -)"
