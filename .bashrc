@@ -65,6 +65,7 @@ alias home='cd ~/Documents/Products'
 alias start='bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
 alias start-prof='ENABLE_RACK_PROFER=1 bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
 alias raketasks='bundle exec rake -vT'
+alias rspec='bundle exec rspec'
 #
 # Emvironment path
 #
