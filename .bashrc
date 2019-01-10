@@ -67,6 +67,7 @@ alias start='bundle exec unicorn_rails -c config/unicorn/development.rb -E devel
 alias start-prof='ENABLE_RACK_PROFER=1 bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
 alias raketasks='bundle exec rake -vT'
 alias rspec='bundle exec rspec'
+alias init='bundle install --path vendor/bundle -j4'
 #
 # Emvironment path
 #
