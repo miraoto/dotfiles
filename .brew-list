@@ -20,6 +20,7 @@ libyaml
 mecab
 mecab-ipadic
 mysql
+nodenv
 oniguruma
 openssl
 pcre

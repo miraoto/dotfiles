@@ -9,6 +9,7 @@ fi
 if [ -f .env.sample ] ; then
   source .env.sample
 fi
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 #
 # Setup ssh-agent
 #
@@ -76,6 +77,13 @@ export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:
 export PATH=$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PGDATA=/usr/local/var/postgres
+
+# Applicable only when mysql@5.6 is installed at homebrew
+# export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+# export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.6/lib/pkgconfig"
+# export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
+# export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
+
 #
 # Eval version management tools
 #
