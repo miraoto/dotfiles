@@ -1,0 +1,18 @@
+{
+    // SEE: https://github.com/adobe-fonts/source-code-pro
+    "editor.fontFamily": "Source Code Pro",
+    "editor.fontSize": 12,
+
+    // ファイルの保存時に末尾の空白をトリミング
+    "files.trimTrailingWhitespace": true,
+
+    "[ruby]": {
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[slim]": {
+        "editor.tabSize": 2
+    }
+}
