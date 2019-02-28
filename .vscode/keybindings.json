@@ -1,0 +1,11 @@
+[
+    {
+            "command": "extension.runFileSpecs",
+            "title": "Run File Specs",
+            "key": "cmd+ctrl+t"
+        },
+    {
+            "key": "shift+cmd+t",
+            "command": "workbench.action.reopenClosedEditor"
+        }
+]
