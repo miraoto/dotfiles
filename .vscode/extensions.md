@@ -1,0 +1,12 @@
+- Auto Rename Tag
+- GitLens
+- HTML CSS Support
+- HTML Snippets
+- HTMLHint
+- npm
+- Ruby
+- Sass
+- Slim
+- Vim
+- XML tools
+- yaml
