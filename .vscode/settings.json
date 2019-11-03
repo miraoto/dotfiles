@@ -1,18 +1,51 @@
 {
-    // SEE: https://github.com/adobe-fonts/source-code-pro
-    "editor.fontFamily": "Source Code Pro",
-    "editor.fontSize": 12,
+  // SEE: https://github.com/adobe-fonts/source-code-pro
+  "editor.fontFamily": "Source Code Pro",
+  "editor.fontSize": 12,
+  // Prettier
+  "editor.formatOnSave": true,
 
-    // ファイルの保存時に末尾の空白をトリミング
-    "files.trimTrailingWhitespace": true,
+  // ファイルの保存時に末尾の空白をトリミング
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
 
-    "[ruby]": {
-        "editor.tabSize": 2
+  "ruby.rubocop.configFilePath": "",
+  "ruby.rubocop.executePath": "",
+  "ruby.rubocop.onSave": true,
+
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    {
+      "language": "typescript",
+      "autoFix": true
     },
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
-    "[slim]": {
-        "editor.tabSize": 2
+    {
+      "language": "vue",
+      "autoFix": true
     }
+  ],
+  "eslint.options": {
+    "configFile": "/Users/XXX/my-best.com/frontend/eslintrc.json"
+  },
+  "eslint.autoFixOnSave": true,
+
+  "[ruby]": {
+    "editor.tabSize": 2
+  },
+  "[slim]": {
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
+  },
+
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai",
+  "ruby.format": "rubocop"
 }
+
