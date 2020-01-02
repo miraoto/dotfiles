@@ -79,6 +79,8 @@ export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:
 export PATH=$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PGDATA=/usr/local/var/postgres
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Applicable only when mysql@5.6 is installed at homebrew
 # export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
