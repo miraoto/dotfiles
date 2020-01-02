@@ -3,19 +3,41 @@
   "editor.fontFamily": "Source Code Pro",
   "editor.fontSize": 12,
   // Prettier
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  // 制御文字の表示
+  "editor.renderControlCharacters": true,
 
   // ファイルの保存時に末尾の空白をトリミング
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
 
+  "terminal.integrated.copyOnSelection": true,
+
   "ruby.rubocop.configFilePath": "",
   "ruby.rubocop.executePath": "",
   "ruby.rubocop.onSave": true,
+  "[ruby]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  },
+  "[slim]": {
+    "editor.tabSize": 2
+  },
+
+  "[vue]": {
+    "editor.formatOnSave": true
+  },
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "singleQuote": true,
+      "trailingComma": "es5"
+    }
+  },
 
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
     {
@@ -28,24 +50,18 @@
     }
   ],
   "eslint.options": {
-    "configFile": "/Users/XXX/my-best.com/frontend/eslintrc.json"
-  },
-  "eslint.autoFixOnSave": true,
-
-  "[ruby]": {
-    "editor.tabSize": 2
-  },
-  "[slim]": {
-    "editor.tabSize": 2
+    "configFile": "/Users/miraoto/Documents/Products/my-best.com/frontend/eslintrc.json"
   },
   "[javascript]": {
     "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
 
   "explorer.confirmDelete": false,
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Monokai",
-  "ruby.format": "rubocop"
+  "ruby.format": "rubocop",
+  "slimLint.configurationPath": "/Users/miraoto/Documents/Products/my-best.com/.slim-lint.yml",
+  "slimLint.executablePath": "bundle exec slim-lint"
 }
 
