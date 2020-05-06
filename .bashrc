@@ -69,6 +69,9 @@ alias raketasks='bundle exec rake -vT'
 alias rspec='bundle exec rspec'
 alias init='bundle install --path vendor/bundle -j4'
 alias cop='bundle exec rubocop'
+alias dc-stop-all='docker stop $(docker ps -q)'
+alias dc-rm-all='docker rm $(docker ps -q -a)'
+alias dc-rmi-all='docker rmi $(docker images -q)'
 #
 # Emvironment path
 #
