@@ -1,15 +1,26 @@
-# 初回シェル時のみ tmux実行
-if [ $SHLVL = 1 ]; then
+# ========================
+# .bash_profile
+# ========================
+
+# 初回シェル時のみ tmux を実行
+if [ "$SHLVL" = 1 ]; then
   tmux
 fi
-# loading user setting .bashrc
-if [ -f ~/.bashrc ] ; then
-  source ~/.bashrc
-fi
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# Applicable only when mysql@5.6 is installed at homebrew
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.6/lib/pkgconfig"
-export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
-export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
+# ユーザー設定読み込み
+[ -f ~/.bashrc ] && source ~/.bashrc
+
+# Homebrew 補完
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && \
+  source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+# GVM
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+# Volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Homebrew のパス設定
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
