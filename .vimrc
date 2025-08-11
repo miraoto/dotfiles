@@ -33,7 +33,7 @@ if !isdirectory(&directory) | call mkdir(&directory, 'p') | endif
 
 " ---- UI ----
 set number
-set relativenumber
+set norelativenumber
 set cursorline
 set laststatus=2
 set showcmd
@@ -115,7 +115,7 @@ endtry
 
 " ---- lightline ----
 let g:lightline = {
-\ 'colorscheme': 'wombat',
+\ 'colorscheme': 'powerline',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -128,6 +128,8 @@ function! LightlineGitBranch()
   endif
   return ''
 endfunction
+
+highlight CursorLine   cterm=NONE ctermbg=237 ctermfg=White guibg=#444444 guifg=#ffffff
 
 " ========================================
 " ALE (lint & fix)
