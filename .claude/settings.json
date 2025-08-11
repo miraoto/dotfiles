@@ -1,0 +1,55 @@
+{
+  "env": {}, // 追加の環境変数は付与しない
+  "model": "opus",
+  "preferredNotifChannel": "auto",
+  "enableAllProjectMcpServers": false, // プロジェクト内の全MCPサーバ自動有効化を禁止
+  "permissions": {
+    // === 許可：必要最小限の読み書きと安全なBashのみ ===
+    "allow": [
+      // 読み取り対象を限定（全読取は不可）
+      "Read(src/**)", "Read(apps/**)", "Read(packages/**)", "Read(docs/**)",
+      "Read(tests/**)", "Read(public/**)", "Read(config/**)", "Read(.github/**)",
+      "Read(package.json)", "Read(pnpm-workspace.yaml)", "Read(tsconfig*.json)",
+      "Read(.rubocop.yml)", "Read(Gemfile)", "Read(Gemfile.lock)",
+
+      // 書き込み可能な場所を限定（コード・ドキュメント・テスト・一時領域）
+      "Write(src/**)", "Write(docs/**)", "Write(tests/**)", "Write(.tmp/**)",
+
+      // Git はローカル作業のみ許可（push/fetch/pull 等のリモート操作は禁止）
+      "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)",
+      "Bash(git add:*)", "Bash(git commit:*)",
+
+      // 安全な基本コマンドのみ（cat は許可パスに限定）
+      "Bash(ls:*)",
+      "Bash(cat src/**)", "Bash(cat apps/**)", "Bash(cat packages/**)",
+      "Bash(cat docs/**)", "Bash(cat tests/**)", "Bash(cat public/**)",
+      "Bash(cat config/**)",
+      "Bash(mkdir .tmp/*)"
+    ],
+
+    // === 禁止：秘密情報・危険操作・外部通信・リモートGit等 ===
+    "deny": [
+      // 機密ファイル・資格情報の読取を禁止
+      "Read(**/.env*)", "Read(.env*)", "Read(**/id_rsa)", "Read(**/id_ed25519)",
+      "Read(**/.ssh/**)", "Read(**/.aws/**)", "Read(node_modules/**)", "Read(.git/**)",
+
+      // 機密/構成/依存ロック等の書込みを禁止（サプライチェーン保護）
+      "Write(.env*)", "Write(node_modules/**)", "Write(.git/**)",
+      "Write(package.json)", "Write(package-lock.json)", "Write(pnpm-lock.yaml)", "Write(yarn.lock)",
+      "Write(Gemfile)", "Write(Gemfile.lock)", "Write(tsconfig*.json)", "Write(config/**)",
+
+      // 危険コマンドや外部通信を禁止
+      "Bash(sudo:*)", "Bash(rm -rf:*)", "Bash(rm /*)",
+      "Bash(ssh:*)", "Bash(scp:*)", "Bash(curl:*)", "Bash(wget:*)",
+      "Bash(osascript -e:*)", "Bash(docker:*)", "Bash(kubectl:*)",
+
+      // Git のリモート操作・履歴破壊系を禁止
+      "Bash(git push:*)", "Bash(git fetch:*)", "Bash(git pull:*)",
+      "Bash(git reset:*)", "Bash(git rebase:*)", "Bash(git init:*)",
+      "Bash(git checkout:*)", "Bash(git merge:*)",
+
+      // 依存の新規インストールは全面禁止（postinstall 脆弱化対策）
+      "Bash(npm install:*)", "Bash(pnpm install:*)", "Bash(yarn install:*)"
+    ]
+  }
+}
