@@ -1,242 +1,248 @@
-set nocompatible
+" ========================================
+" - Plugin manager: dein.vim
+" - Lint/fix: ALE
+" - Fuzzy & finder: Denite
+" - File explorer: defx
+" NOTE: Vim8 + Python3 推奨。:echo has('python3') で確認。無い場合は Neovim 推奨。
+"       pip3 install --user pynvim が必要になることがあります。
+" ========================================
 
-filetype off               "ファイルタイプ関連を無効化
-filetype plugin indent off "ファイルタイプ関連を無効化
+" ---- Basic ----
+if &compatible | set nocompatible | endif
+set encoding=utf-8
+scriptencoding utf-8
 
-set runtimepath+=~/.vim/dein/dein.vim
+let mapleader = "\<Space>"
+
+" ---- Performance ----
+set ttyfast
+set lazyredraw
+set updatetime=300
+
+" ---- Files/backup/undo ----
+set hidden
+set nobackup nowritebackup
+set undofile
+if has('persistent_undo')
+  let &undodir = expand('~/.vim/undo')
+  if !isdirectory(&undodir) | call mkdir(&undodir, 'p') | endif
+endif
+set swapfile
+let &directory = expand('~/.vim/swap')
+if !isdirectory(&directory) | call mkdir(&directory, 'p') | endif
+
+" ---- UI ----
+set number
+set relativenumber
+set cursorline
+set laststatus=2
+set showcmd
+set wildmenu
+set wildmode=longest:full,full
+set signcolumn=yes
+set termguicolors
+set showmatch
+
+" Tabs/indent
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set smartindent
+set autoindent
+
+" Search
+set ignorecase smartcase
+set incsearch
+set hlsearch
+
+" View
+set wrap
+set linebreak
+set breakindent
+set scrolloff=4
+set sidescrolloff=4
+
+" Clipboard & mouse
+if has('clipboard')
+  set clipboard+=unnamedplus
+endif
+set mouse=a
+
+" Security
+set modelines=0
+
+" ---- dein bootstrap ----
+filetype off
+if empty(glob('~/.vim/dein/repos/github.com/Shougo/dein.vim'))
+  silent !mkdir -p ~/.vim/dein/repos/github.com/Shougo
+  silent !git clone --depth=1 https://github.com/Shougo/dein.vim ~/.vim/dein/repos/github.com/Shougo/dein.vim
+  autocmd VimEnter * call dein#install()
+endif
+
+set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 
+" ---- Plugins ----
+" Colors & UI
 call dein#add('altercation/vim-colors-solarized')
-call dein#add('itchyny/lightline.vim')  " ステータスバーを装飾
-call dein#add('scrooloose/syntastic')   " 各種シンタックスチェック
-call dein#add('Shougo/vimfiler')
-call dein#add('Shougo/vimproc')
-call dein#add('Shougo/vimshell')
-call dein#add('szw/vim-tags')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neomru.vim') " 最近利用したファイルを表示
-call dein#add('Shougo/unite-outline')
-call dein#add('basyura/unite-rails')
-call dein#add('kana/vim-smartinput') " 括弧などの補完
-call dein#add('kana/vim-submode')
-call dein#add('cohama/vim-smartinput-endwise') " vim-endwiseみたいなもの
-call dein#add('tsukkee/unite-tag')
-call dein#add('tomtom/tcomment_vim') " 複数行コメントアウト
-call dein#add('vim-jp/vimdoc-ja') " ドキュメントの日本語化
-call dein#add('posva/vim-vue')
-call dein#add('ekalinin/Dockerfile.vim')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('alpaca-tc/alpaca_tags', {
-  \ 'rev' : 'development',
-  \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
-  \ 'autoload' : {
-  \   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
-  \   'unite_sources' : ['tags']
-  \ }})
-" }}}
+call dein#add('itchyny/lightline.vim')
 
-" NeoBundle#ruby {{{
-call dein#add('tpope/vim-rails')   " railsプロジェクト間の移動
-call dein#add('slim-template/vim-slim')
-call dein#add('tpope/vim-endwise') " 対になる文字を補完
-" }}}
+" Lint/Fix
+call dein#add('dense-analysis/ale')
+
+" Finder & Explorer (modern stack)
+call dein#add('Shougo/denite.nvim')     " requires Python3
+call dein#add('Shougo/defx.nvim')       " requires Python3 (pynvim)
+call dein#add('ryanoasis/vim-devicons') " optional icons for defx
+
+" Helpful editing (optional but recommended)
+" call dein#add('tpope/vim-surround')
+" call dein#add('tpope/vim-commentary')
+" call dein#add('airblade/vim-gitgutter')
+" call dein#add('tpope/vim-sleuth')
+
 call dein#end()
-
-" colorschema {{{
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
-" }}}
-
-" 文字コード {{{
-set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,cp932
-" }}}
-
-
-" 編集 {{{
-set matchtime=3 " ハイライト秒数
-set showmatch   " 対応する括弧をハイライト
-" }}}
-
-
-" 表示 {{{
-syntax on " シンタックスハイライト有効
-set ambiwidth=double "
-set autoindent    "_
-set cmdheight=2   " メッセージ表示欄を2行確保
-set expandtab     " タブ入力を複数の空白入力に置き換える
-set ruler         " カーソル行表示
-set nu            " 行番号表示
-set showcmd       " コマンドの一部を画面の最下行に表示
-set shiftwidth=4  " インデントの各段階に使われる空白の数
-set softtabstop=0 " <Tab> の挿入や <BS> の使用等の編集操作をするときに、<Tab> が対応する空白の数
-set tabstop=4     " ファイル内の <Tab> が対応する空白の数
-set title         " タイトル表示
-set t_Co=256      " 
-set list          " タブ文字を CTRL-I で表示し、行末に $ で表示
-set listchars=trail:_,eol:¬,tab:^\  " Listモードに利用する文字を設定
-set laststatus=2  " 最下ウィンドウにステータスを表示
-set nowildmenu    " 
-set wildmode=longest " 
-set visualbell t_vb= " ビープ音なし
-" }}}
-
-
-" ファイル処理 {{{
-set autoread      " 外部でファイルに変更がされた場合は読みなおす
-set hidden        " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
-set history=50    " コマンドラインの履歴を50件保存する
-set noswapfile    " ファイル保存時にスワップファイルを作らない
-set nobackup      " ファイル保存時にバックアップファイルを作らない
-set nowritebackup " 
-" }}}
-
-
-" 検索 {{{
-set incsearch  " インクリメンタルサーチ
-set hlsearch   " 検索マッチ文字列をハイライト
-set ignorecase " 大文字/小文字を区別しない
-set smartcase  " 検索文字に大文字がある場合大文字/小文字を区別する
-set wrapscan   " 検索がファイル末尾まで進んだら、ファイル先頭から再び検索
-" }}}
-
-" syntastic {{{
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map={
-\  'mode': 'passive',
-\ 'active_filetypes': ['php', 'ruby', 'javascript'],
-\ 'passive_filetypes': []
-\}
-let g:syntastic_ruby_checkers=['rubocop']
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_php_checkers=['php']
-let g:syntastic_quite_warnings=0
-" }}}
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-" }}}
-
-" for PHP {{{
-autocmd FileType php autocmd BufWritePre * :%s/\t/    /ge " ファイル保存時にタブをスペースに変換
-" }}}
-
-" for ruby {{{
-autocmd BufEnter *.rb,*.rake,*.slim :set ts=2 sw=2 sts=0
-" }}}
-
-" for javascript {{{
-autocmd BufEnter *.js :set ts=2 sw=2 sts=0 et
-" }}}
-
-" for yaml {{{
-autocmd BufEnter *.yml :set ts=2 sw=2 sts=0 et
-" }}}
-
-" for vue {{{
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-autocmd FileType vue    setlocal sw=2 sts=2 ts=2 et
-" }}}
-
-" for coffeescript {{{
-autocmd BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-" インデント設定
-autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
-" オートコンパイル
-  "保存と同時にコンパイルする
-autocmd BufWritePost *.coffee silent make! 
-  "エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw! 
-" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-" }}}
-
-" for digdag {{{
-au BufNewFile,BufRead *.dig setf yaml
-" }}}
-
-" forbid arrow Keymaps {{{
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-" }}}
-
-" Filer Keymaps {{{
-nnoremap <silent><Space>j  :VimFilerExplorer<CR> " ファイラー起動
-" nnoremap <silent><Space>jj  :VimFiler<CR> " プロジェクトファイラー起動
-" }}}
-
-" Escape Keymaps {{{
-inoremap <silent> jj <ESC>
-inoremap <silent> <C-c> <ESC>
-" }}}
-
-" Tab Keymaps {{{
-" 新タブ
-nnoremap <silent><Space>t :tabnew<CR>
-" }}}
-
-" VimShell Keymaps {{{
-" VimShell起動
-nnoremap <silent><Space>s :VimShell<CR>
-" }}}
-
-" alpaca_tags
-let g:alpaca_update_tags_config = {
-  \ '_' : '-R --sort=yes --languages=-js,html,css',
-  \ 'js' : '--languages=+js',
-  \ '-js' : '--languages=-js,JavaScript',
-  \ 'php' : '--languages=+php',
-  \ 'ruby': '--languages=+Ruby',
-  \ 'css' : '--languages=+css',
-  \ '-style': '--languages=-css,scss,js,JavaScript,html'
-  \ }
-
-augroup AlpacaTags
-  autocmd!
-  if exists(':Tags')
-"    autocmd BufWritePost *.rb TagsUpdate ruby
-"    autocmd BufWritePost *.php TagsUpdate php
-"    autocmd BufWritePost *.css TagsUpdate css
-"    autocmd BufWritePost *.js TagsUpdate js
-"    autocmd BufEnter * TagsSet
-  endif
-augroup END
-nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
-" }}}
-
-" ctags Keymaps {{{
-" 指定のタグ先にジャンプ
-" nnoremap ,<C-]> :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
-" }}}
-
-" vim smartinput_endwise {{{
-call smartinput_endwise#define_default_rules()
-" }}}
-
-" Unite Keymaps {{{
-noremap <C-N> :Unite -buffer-name=file file<CR>
-noremap <C-Z> :Unite file_mru<CR>
-" }}}
-
-" vim-tags {{{
-let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -f tags -R . 2>/dev/null"
-let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -R -f Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
-set tags+=tags,Gemfile.lock.tags
-" }}}
-
-
 filetype plugin indent on
+syntax on
 
+" ---- Colorscheme ----
+set background=dark
+try
+  colorscheme solarized
+catch
+  clightlineolorscheme default
+endtry
+
+" ---- lightline ----
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': { 'gitbranch': 'LightlineGitBranch' }
+\ }
+function! LightlineGitBranch()
+  if exists('*fugitive#head')
+    return fugitive#head()
+  endif
+  return ''
+endfunction
+
+" ========================================
+" ALE (lint & fix)
+" ========================================
+let g:ale_sign_column_always = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
+let g:ale_lint_on_text_changed = 'never'  " タイピング中は重くしない
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+
+" 代表的な言語の fixer 例（必要に応じて調整）
+let g:ale_fixers = {
+\  'javascript': ['prettier'],
+\  'typescript': ['prettier'],
+\  'typescriptreact': ['prettier'],
+\  'json': ['prettier'],
+\  'css': ['prettier'],
+\  'scss': ['prettier'],
+\  'html': ['prettier'],
+\  'ruby': ['rubocop'],
+\  'python': ['black'],
+\}
+
+" Node/Prettier のパスを自動解決（プロジェクトローカル優先）
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = ''
+let g:ale_fix_on_save_ignore = ['markdown']
+
+" ========================================
+" Denite (fuzzy finder)
+" ========================================
+" 推奨: ripgrep (rg) があれば検索が高速
+if executable('rg')
+  call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--no-heading', '--smart-case'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+endif
+
+" UI tweaks
+call denite#custom#option('default', {
+\ 'winrow': 1,
+\ 'split': 'floating',
+\ 'start_filter': 1,
+\ 'prompt': '> ',
+\})
+
+" Keymaps
+nnoremap <silent> <Leader>f :Denite file_rec<CR>
+nnoremap <silent> <Leader>b :Denite buffer<CR>
+nnoremap <silent> <Leader>m :Denite file_mru<CR>
+nnoremap <silent> <Leader>g :Denite grep:. -no-empty<CR>
+
+" ========================================
+" defx (file explorer)
+" ========================================
+" 基本設定
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
+  nnoremap <silent><buffer><expr> c    defx#do_action('copy')
+  nnoremap <silent><buffer><expr> m    defx#do_action('move')
+  nnoremap <silent><buffer><expr> p    defx#do_action('paste')
+  nnoremap <silent><buffer><expr> l    defx#do_action('open')
+  nnoremap <silent><buffer><expr> E    defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P    defx#do_action('preview')
+  nnoremap <silent><buffer><expr> K    defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N    defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> d    defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r    defx#do_action('rename')
+  nnoremap <silent><buffer><expr> .    defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> q    defx#do_action('quit')
+endfunction
+
+" defx 起動ショートカット
+nnoremap <silent> <Leader>e :Defx -toggle -resume -columns=icons:indent:git:filename -buffer-name=defx<CR>
+
+" devicons 連携
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_denite = 1
+let g:webdevicons_enable_nerdtree = 0
+
+" ========================================
+" Editing niceties
+" ========================================
+" wrapped lines でも直感的に移動
+nnoremap j gj
+nnoremap k gk
+
+" Save/quit
+nnoremap <Leader>w :write<CR>
+nnoremap <Leader>q :quit<CR>
+nnoremap <Leader>x :xit<CR>
+
+" Window navigation like tmux
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Resize splits
+nnoremap <Leader><Left>  :vertical resize -5<CR>
+nnoremap <Leader><Right> :vertical resize +5<CR>
+nnoremap <Leader><Up>    :resize +3<CR>
+nnoremap <Leader><Down>  :resize -3<CR>
+
+" Toggle search highlight
+nnoremap <Leader>/ :set hlsearch!<CR>
+
+" ---- Finish ----
 if dein#check_install()
   call dein#install()
 endif
