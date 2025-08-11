@@ -1,43 +1,36 @@
-#
-# bash config file (.bashrc)
-#
-#
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-  source /etc/bashrc
+# ========================
+# .bashrc
+# ========================
+
+# ---- グローバル定義読み込み ----
+[ -f /etc/bashrc ] && source /etc/bashrc
+[ -f .env.sample ] && source .env.sample
+[ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
+
+# ---- ssh-agent 設定 ----
+if [ -z "$SSH_AGENT_PID" ] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+  eval "$(ssh-agent)"
 fi
-if [ -f .env.sample ] ; then
-  source .env.sample
-fi
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-#
-# Setup ssh-agent
-#
-if [ -f ~/.ssh-agent ]; then
-  eval `ssh-agent`
-fi
-if [ -z "$SSH_AGENT_PID" ] || ! kill -0 $SSH_AGENT_PID; then
-  ssh-agent > ~/.ssh-agent
-  eval `ssh-agent`
-fi
-ssh-add -l >& /dev/null || ssh-add
-#
-# Terminal Name
-#
+ssh-add -l &>/dev/null || ssh-add
+unset SSH_ASKPASS
+
+# ---- ターミナル設定 ----
 shopt -s checkwinsize
 source /usr/local/bin/git-completion.bash
 source /usr/local/bin/git-prompt.sh
 export PS1='\[\033[32m\]\u@\[\033[34m\][\W]\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
-#
-# Encoding
-#
+
+# ---- ロケール・履歴 ----
 export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 export LESSCHARSET=utf-8
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad   # macOS
 export HISTSIZE=10000
-#
-# alias command list
-#
-alias vi='vim'
+
+# ---- alias ----
+alias vi='/usr/bin/vim'
+alias vim='/usr/bin/vim'
 alias du='du -h'
 alias ls='ls -FG'
 alias ll='ls -laG'
@@ -47,54 +40,30 @@ alias mv='mv -i'
 alias grep='grep -G -ERUIn'
 alias gpo='git push origin'
 alias wip='git commit --allow-empty -m'
-#
-# unset env
-#
-unset SSH_ASKPASS
-#
-# Alias for mac
-#
 alias f='open -a Finder ./'
-alias atom='open -a Atom ./'
-alias vi='/usr/bin/vim'
-alias vim='/usr/bin/vim'
 alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
 alias co='git checkout'
 alias home='cd ~/Documents/Products'
-# For Development shortcut
-alias start='bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
-alias start-prof='ENABLE_RACK_PROFER=1 bundle exec unicorn_rails -c config/unicorn/development.rb -E development'
-alias raketasks='bundle exec rake -vT'
-alias rspec='bundle exec rspec'
-alias init='bundle install --path vendor/bundle -j4'
-alias cop='bundle exec rubocop'
+
+# 開発用ショートカット
 alias dc-stop-all='docker stop $(docker ps -q)'
-alias dc-rm-all='docker rm $(docker ps -q -a)'
+alias dc-rm-all='docker rm $(docker ps -aq)'
 alias dc-rmi-all='docker rmi $(docker images -q)'
-#
-# Emvironment path
-#
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export PATH=/usr/local/heroku/bin:$PATH
-export PATH=/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PYENV_ROOT/bin:$HOME/.rbenv/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PGDATA=/usr/local/var/postgres
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 
-# Applicable only when mysql@5.6 is installed at homebrew
-# export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-# export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.6/lib/pkgconfig"
-# export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
-# export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
+# ---- PATH 設定 ----
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+export PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH"
+export PGDATA="/usr/local/var/postgres"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
-#
-# Eval version management tools
-#
+# ---- バージョン管理ツール ----
 eval "$(rbenv init -)"
-# eval "$(pyenv init -)"
-export PATH="${HOME}/.ndenv/bin:${PATH}"
-eval "$(ndenv init -)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# MPC 関連設定
+export NOTION_TOKEN=""
+export NOTION_DATABASE_ID=""
