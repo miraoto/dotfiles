@@ -3,9 +3,9 @@
 # ========================
 
 # 初回シェル時のみ tmux を実行
-if [ "$SHLVL" = 1 ]; then
-  tmux
-fi
+#if [ "$SHLVL" = 1 ]; then
+#  tmux
+#fi
 
 # ユーザー設定読み込み
 [ -f ~/.bashrc ] && source ~/.bashrc
