@@ -1,24 +1,24 @@
-# Communication Rules
-- Respond to the user in Japanese  
-  <!-- ユーザーには日本語で応答すること -->
+# CLAUDE.md — ガイドライン
 
-# Coding Rules
-- Introduce explanatory/summary variables to break down complex expressions for clarity  
-  <!-- 説明変数／要約変数を導入し、複雑な式をわかりやすく分割すること -->
-- Avoid control flow variables (e.g., `done` flags); use `break` or similar to branch clearly  
-  <!-- 制御フロー変数（例：doneフラグ）を避け、breakなどで明確に分岐すること -->
-- Keep variable scope as narrow as possible; prefer local variables over member variables  
-  <!-- 変数のスコープはできるだけ狭くし、メンバ変数よりローカル変数を優先すること -->
-- Use early returns (guard clauses) to keep nesting shallow  
-  <!-- 早期リターン（ガード節）を用いてネストを浅く保つこと -->
-- For code that is difficult to understand, be able to explain the underlying logic of the generated code  
-  <!-- 理解困難なコードには、生成したコードの動作原理を説明できること -->
-- Add usage examples and comments for any complex type definitions  
-  <!-- 複雑な型定義には必ず使用例とコメントを追加すること -->
+> チーム全体で「理解しやすく、一貫したコード」を書くための指針です。  
+> 本ドキュメントは、AI 支援（Claude / Cursor / Copilot など）を含むすべての開発に適用します。
 
-# Prohibited Actions
-- Outputting secrets or personal information  
-  <!-- Secrets や個人情報の出力 -->
-- Guessing external API code without official specifications  
-  <!-- 公式仕様不明の外部APIコード推測 -->
+## 目的
 
+- コードの可読性・保守性を高め、レビューや引き継ぎのコストを減らす
+- チームメンバー全員が同じ「判断基準」でコードを書く文化をつくる
+- AI 補助ツールが生成するコードの品質を安定させる
+
+## 構成
+
+| ファイル                                 | 内容                                 |
+| ---------------------------------------- | ------------------------------------ |
+| [`BASIC.md`](./rules/BASIC.md) COMPANY   |
+| [`CLEAN_CODE.md`](./rules/CLEAN_CODE.md) | クリーンコード記載のコーディング作法 |
+| [`rules/COMPANY.md`](./rules/COMPANY.md) | 組織のルール                         |
+| [`rules/TEAM.md`](./rules/TEAM.md)       | チームのルール                       |
+
+## 禁止行為
+
+- Secrets や個人情報の出力
+- 公式仕様不明の外部 API コード推測
