@@ -26,7 +26,7 @@
 | ----------------------------------------------------- | ------------------------------------ |
 | [`basic.md`](./.claude/rules/general/basic.md)       | 基本的なコーディングルール           |
 | [`clean_code.md`](./.claude/rules/general/clean_code.md) | クリーンコード記載のコーディング作法 |
-| [`team.md`](./.claude/rules/original/team.md)        | チームのルール                       |
+| [`team.md`](./.claude/rules/original/team.md)        | チーム独自のルール（命名規則、レビュー方針、テスト戦略など） |
 
 ## 4. 運用方針
 
