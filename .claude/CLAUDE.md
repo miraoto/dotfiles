@@ -1,24 +1,26 @@
 # CLAUDE.md — ガイドライン
 
-> チーム全体で「理解しやすく、一貫したコード」を書くための指針です。  
-> 本ドキュメントは、AI 支援（Claude / Cursor / Copilot など）を含むすべての開発に適用します。
+> Note: 本ファイルはユーザー共通の CLAUDE ガイドラインです。  
+> リポジトリ直下に `CLAUDE.md` が存在する場合、**そちらを優先**します。
+> 無い場合はこの共通版が参照されます。
+> ガイドラインに矛盾が生じる場合は、リポジトリ直下の方を正とします。
 
-## 目的
+## 1. Purpose（目的）
 
 - コードの可読性・保守性を高め、レビューや引き継ぎのコストを減らす
 - チームメンバー全員が同じ「判断基準」でコードを書く文化をつくる
 - AI 補助ツールが生成するコードの品質を安定させる
 
-## 構成
+
+## 2. Scope（対象）
+- 本リポジトリ全体（コード・ドキュメント・自動生成物を含む）
+- 外部API／LLM補助開発／レビューにも適用
+- 優先順位：team > basic > clean_code > CLAUDE補足
+
+## 3. 構成
 
 | ファイル                                 | 内容                                 |
 | ---------------------------------------- | ------------------------------------ |
-| [`BASIC.md`](./rules/BASIC.md) COMPANY   |
-| [`CLEAN_CODE.md`](./rules/CLEAN_CODE.md) | クリーンコード記載のコーディング作法 |
-| [`rules/COMPANY.md`](./rules/COMPANY.md) | 組織のルール                         |
-| [`rules/TEAM.md`](./rules/TEAM.md)       | チームのルール                       |
-
-## 禁止行為
-
-- Secrets や個人情報の出力
-- 公式仕様不明の外部 API コード推測
+| [`basic.md`](./claude/rules/base.md)            |  |
+| [`clean_code.md`](./claude/rules/general/CLEAN_CODE.md) | クリーンコード記載のコーディング作法 |
+| [`team.md`](./claude/rules/original/team.md)       | チームのルール                       |
