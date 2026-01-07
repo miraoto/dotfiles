@@ -55,4 +55,4 @@ alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
 alias co='git checkout'
 alias home='cd ~/Documents/Products'
-
+alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
