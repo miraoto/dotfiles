@@ -1,4 +1,5 @@
-# ユーザー設定読み込み
+# .zprofile
+
 [ -f ~/.zshrc ] && source ~/.zshrc
 
 eval "$(/opt/homebrew/bin/brew shellenv)"

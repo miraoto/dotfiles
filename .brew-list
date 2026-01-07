@@ -1,7 +1,16 @@
+autoconf
+awscli
 bash
 bash-completion
+bat
+delta
+eza
+fzf
+gh
 git
 jq
+ripgrep
 tig
 tmux
+volta
 wget

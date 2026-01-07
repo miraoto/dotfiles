@@ -1,14 +1,9 @@
-# ========================
 # .zshrc
-# ========================
 
-# ---- Global zsh profile ----
 [ -f /etc/zshrc ] && source /etc/zshrc
 
-# ---- Completion ----
 autoload -Uz compinit && compinit
 
-# ---- History & usability (tweak as you like) ----
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt SHARE_HISTORY
@@ -23,12 +18,11 @@ GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST
 PS1='%F{cyan}%n:%c%f%F{red}$(__git_ps1 "(%s)")%f\$ '
 
-# ---- Exports & PATH ----
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad   # macOS
+export LSCOLORS=ExFxBxDxCxegedabagacad
 export HISTSIZE=10000
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
@@ -38,12 +32,12 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export NOTION_TOKEN=""
 export NOTION_DATABASE_ID=""
 
-# ---- Aliases (migrated) ----
 alias vi='/usr/bin/vim'
 alias vim='/usr/bin/vim'
 alias du='du -h'
-alias ls='ls -FG'
-alias ll='ls -laG'
+alias ls='eza'
+alias ll='eza -la --git'
+alias lt='eza --tree --level=2'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -56,3 +50,6 @@ alias gpp='/usr/local/bin/git-pull-and-prune.sh'
 alias co='git checkout'
 alias home='cd ~/Documents/Products'
 alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
+alias cat='bat'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
