@@ -4,7 +4,6 @@
 
 # ---- グローバル定義読み込み ----
 [ -f /etc/bashrc ] && source /etc/bashrc
-[ -f .env.sample ] && source .env.sample
 [ -f /usr/local/etc/bash_completion ] && source /usr/local/etc/bash_completion
 
 # ---- ssh-agent 設定 ----

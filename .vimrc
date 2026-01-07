@@ -110,7 +110,7 @@ set background=dark
 try
   colorscheme solarized
 catch
-  clightlineolorscheme default
+  colorscheme default
 endtry
 
 " ---- lightline ----

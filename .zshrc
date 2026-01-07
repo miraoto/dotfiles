@@ -24,19 +24,19 @@ setopt PROMPT_SUBST
 PS1='%F{cyan}%n:%c%f%F{red}$(__git_ps1 "(%s)")%f\$ '
 
 # ---- Exports & PATH ----
-LANG=ja_JP.UTF-8
-LC_ALL=ja_JP.UTF-8
-LESSCHARSET=utf-8
-CLICOLOR=1
-LSCOLORS=ExFxBxDxCxegedabagacad   # macOS
-HISTSIZE=10000
-PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-PATH="/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH"
-VOLTA_HOME="$HOME/.volta"
-PATH="$VOLTA_HOME/bin:$PATH"
-NOTION_TOKEN=""
-NOTION_DATABASE_ID=""
+export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad   # macOS
+export HISTSIZE=10000
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+export PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export NOTION_TOKEN=""
+export NOTION_DATABASE_ID=""
 
 # ---- Aliases (migrated) ----
 alias vi='/usr/bin/vim'
