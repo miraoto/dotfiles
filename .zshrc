@@ -49,7 +49,19 @@ alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
 alias co='git checkout'
 alias home='cd ~/Documents/Products'
+alias gsm='git submodule update --init --recursive'
 alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
+alias dcex='docker compose exec app bash'
+alias dcst='docker compose build && docker compose up'
 alias cat='bat'
+# Volta 環境では claude のバイナリが npm グローバルで管理されるため、
+# `claude update` でアップデートできるようシェル関数でラップしている
+claude() {
+  if [ "$1" = "update" ]; then
+    npm install -g @anthropic-ai/claude-code@latest
+  else
+    command claude "$@"
+  fi
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
