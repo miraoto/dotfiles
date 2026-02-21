@@ -1,0 +1,22 @@
+# ===== フォント（最重要）=====
+font-family = "UDEV Gothic 35NF"
+font-size = 14
+
+# ===== 日本語安定 =====
+adjust-cell-width = true
+unicode-version = 15
+line-height = 1.25
+
+# ===== 視認性（ログ監視用）=====
+cursor-style = block
+scrollback-limit = 200000
+
+# ===== AIエージェント監視用 =====
+background-opacity = 0.96
+bell = false
+
+# ===== コピー =====
+copy-on-select = true
+
+# ===== 長時間作業 =====
+mouse-hide-while-typing = true
