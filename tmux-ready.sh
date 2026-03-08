@@ -14,10 +14,10 @@ tmux send-keys 'claude' C-m
 
 tmux select-pane -t 0
 tmux split-window -v
-tmux send-keys 'npm run dev' C-m
+tmux send-keys 'bun dev' C-m
 
 tmux select-pane -t 1
 tmux split-window -v
-tmux send-keys 'git status' C-m
+tmux send-keys 'health' C-m
 
 tmux attach -t $SESSION
