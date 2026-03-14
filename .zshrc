@@ -27,8 +27,7 @@ export HISTSIZE=10000
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(mise activate zsh)"
 export NOTION_TOKEN=""
 export NOTION_DATABASE_ID=""
 
@@ -54,7 +53,7 @@ alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
 alias dcex='docker compose exec app bash'
 alias dcst='docker compose build && docker compose up'
 alias cat='bat'
-# Volta 環境では claude のバイナリが npm グローバルで管理されるため、
+# mise 環境では claude のバイナリが npm グローバルで管理されるため、
 # `claude update` でアップデートできるようシェル関数でラップしている
 claude() {
   if [ "$1" = "update" ]; then

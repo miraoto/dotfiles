@@ -50,8 +50,6 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
 eval "$(rbenv init -)"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 export NOTION_TOKEN=""
 export NOTION_DATABASE_ID=""

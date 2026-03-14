@@ -7,7 +7,6 @@
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(mise activate bash)"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
