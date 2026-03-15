@@ -10,4 +10,6 @@ scrollback-limit = 200000
 
 background-opacity = 0.96
 copy-on-select = true
+clipboard-paste-protection = false
+clipboard-paste-bracketed-safe = true
 mouse-hide-while-typing = true
