@@ -1,15 +1,45 @@
+# ---- Font ----
 font-family = "UDEV Gothic 35NF"
 font-size = 9
-
+font-thicken = false
 # 日本語の全角文字が途切れないよう幅を10%拡張
 adjust-cell-width = 10%
 adjust-cell-height = 25%
 
-cursor-style = block
-scrollback-limit = 200000
+# ---- Theme ----
+theme = Catppuccin Mocha
 
+# ---- Cursor ----
+cursor-style = block
+
+# ---- macOS ----
+macos-titlebar-style = tabs
+macos-option-as-alt = left
+window-colorspace = display-p3
+
+# ---- Window ----
 background-opacity = 0.96
+background-blur = 20
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-padding-color = extend
+window-save-state = always
+window-inherit-working-directory = true
+window-inherit-font-size = true
+resize-overlay = after-first
+
+# ---- Shell Integration ----
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# ---- Clipboard & Mouse ----
+scrollback-limit = 200000
 copy-on-select = true
 clipboard-paste-protection = false
 clipboard-paste-bracketed-safe = true
+clipboard-trim-trailing-spaces = true
 mouse-hide-while-typing = true
+
+# ---- URL ----
+link-url = true

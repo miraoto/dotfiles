@@ -106,7 +106,12 @@ Dev session launcher. Creates a tmux session with 3 panes:
 
 - Font: UDEV Gothic 35NF
 - Japanese text optimized (cell width +10%)
-- Semi-transparent background (0.96)
+- Catppuccin Mocha theme (matches tmux)
+- Semi-transparent background with blur
+- macOS optimized: tab-style titlebar, Option as Alt, Display P3
+- Shell integration: cursor, sudo wrap, title update
+- URL auto-detection
+- Window state restoration
 
 ### Git helper scripts
 
