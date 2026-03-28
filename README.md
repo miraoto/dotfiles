@@ -74,7 +74,7 @@ Double-click `Fonts/Ricty-Regular-Powerline.ttf` to install.
 ### Zsh
 
 - Git prompt with dirty/untracked/stash/upstream indicators
-- Modern CLI aliases: `eza` (ls), `bat` (cat), `ripgrep` (grep)
+- Modern CLI aliases: `eza` (ls), `ripgrep` (grep)
 - mise for Node.js version management
 - fzf fuzzy finder integration
 - Git aliases: `gpo`, `wip`, `co`, `health`, `gpp`

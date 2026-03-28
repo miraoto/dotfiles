@@ -59,8 +59,12 @@ claude() {
   if [ "$1" = "update" ]; then
     npm install -g @anthropic-ai/claude-code@latest
   else
-    command claude "$@"
+    "$(mise which claude 2>/dev/null || command -v claude)" "$@"
   fi
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
