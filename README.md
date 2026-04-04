@@ -10,7 +10,8 @@ dotfiles/
 ├── .bashrc               # Bash config
 ├── .brew-list            # Homebrew package list
 ├── .config/
-│   └── ghostty/config    # Ghostty terminal config
+│   ├── ghostty/config    # Ghostty terminal config
+│   └── yazi/yazi.toml    # Yazi file manager config
 ├── .gitconfig            # Git config
 ├── .gitconfig-private    # Git private config (includeIf)
 ├── .rubocop.yml          # RuboCop config
@@ -46,8 +47,9 @@ ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.gitconfig-private ~/.gitconfig-private
 ln -sf ~/dotfiles/.zprofile ~/.zprofile
 ln -sf ~/dotfiles/.rubocop.yml ~/.rubocop.yml
-mkdir -p ~/.config/ghostty
+mkdir -p ~/.config/ghostty ~/.config/yazi
 ln -sf ~/dotfiles/.config/ghostty/config ~/.config/ghostty/config
+ln -sf ~/dotfiles/.config/yazi/yazi.toml ~/.config/yazi/yazi.toml
 ```
 
 ### 3. Install Git helper scripts
@@ -112,6 +114,11 @@ Dev session launcher. Creates a tmux session with 3 panes:
 - Shell integration: cursor, sudo wrap, title update
 - URL auto-detection
 - Window state restoration
+
+### Yazi
+
+- Equal-width 3-pane layout (1:1:1)
+- Shell wrapper `y` syncs cwd on exit
 
 ### Git helper scripts
 
