@@ -18,16 +18,20 @@
   sh = show
   co = checkout
   dw = diff -C --color-words
+  lg = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d'
+  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order'
   branches = branch -a
   branchout = checkout -b
 
-[pager]
-  diff = diff-highlight | less
-  show = diff-highlight | less
-  log = diff-highlight | less
+#[pager]
+#  diff = diff-highlight | less
+#  show = diff-highlight | less
+#  log = diff-highlight | less
 
 [diff]
   algorithm = histogram
 
 [includeIf "gitdir:~/Documents/Products/Private/"]
   path = ~/.gitconfig-private
+[wt]
+  copyignored = true
