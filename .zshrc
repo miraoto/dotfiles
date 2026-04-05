@@ -47,6 +47,7 @@ alias f='open -a Finder ./'
 alias health='/usr/local/bin/git-health.sh'
 alias gpp='/usr/local/bin/git-pull-and-prune.sh'
 alias co='git checkout'
+alias gdel='git branch -D'
 alias home='cd ~/Documents/Products'
 alias gsm='git submodule update --init --recursive'
 alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
@@ -73,6 +74,9 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
