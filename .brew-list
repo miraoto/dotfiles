@@ -3,7 +3,8 @@ awscli
 bash
 bash-completion
 bat
-delta
+git-delta
+git-wt
 eza
 fd
 ffmpegthumbnailer
@@ -15,7 +16,7 @@ jq
 mise
 mo
 poppler
-rbenv
+pyenv
 ripgrep
 sevenzip
 shellcheck
