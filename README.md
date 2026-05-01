@@ -20,7 +20,6 @@ dotfiles/
 │   └── settings.json     # VSCode settings
 ├── .zprofile             # Zsh profile
 ├── .zshrc                # Zsh config
-├── Fonts/                # Fonts (Ricty Powerline)
 ├── git-completion.bash   # Git completion script
 ├── git-health.sh         # Git status check script
 ├── git-prompt.sh         # Git prompt display script
@@ -64,10 +63,6 @@ sudo chmod +x /usr/local/bin/git-*.sh
 ```bash
 xargs brew install < ~/dotfiles/.brew-list
 ```
-
-### 5. Install fonts
-
-Double-click `Fonts/Ricty-Regular-Powerline.ttf` to install.
 
 ## Features
 
