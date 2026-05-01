@@ -14,7 +14,6 @@ dotfiles/
 │   └── yazi/yazi.toml    # Yazi file manager config
 ├── .gitconfig            # Git config
 ├── .gitconfig-private    # Git private config (includeIf)
-├── .rubocop.yml          # RuboCop config
 ├── .tmux.conf            # tmux config (Catppuccin theme)
 ├── .vimrc                # Vim config (dein.vim)
 ├── .vscode/
@@ -46,7 +45,6 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.gitconfig-private ~/.gitconfig-private
 ln -sf ~/dotfiles/.zprofile ~/.zprofile
-ln -sf ~/dotfiles/.rubocop.yml ~/.rubocop.yml
 mkdir -p ~/.config/ghostty ~/.config/yazi
 ln -sf ~/dotfiles/.config/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/.config/yazi/yazi.toml ~/.config/yazi/yazi.toml
