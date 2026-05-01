@@ -92,10 +92,11 @@ xargs brew install < ~/dotfiles/.brew-list
 
 ### tmux-ready.sh
 
-Dev session launcher. Creates a tmux session with 3 panes:
-1. Claude Code
-2. `bun dev`
-3. `health` (git status check)
+Dev session launcher. Creates a tmux session `dev` with 4 panes:
+1. `nvim .` (workspace)
+2. Claude Code
+3. `bun dev`
+4. `health` (git status check)
 
 ### Ghostty
 
