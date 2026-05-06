@@ -14,14 +14,12 @@ dotfiles/
 │   └── yazi/yazi.toml    # Yazi file manager config
 ├── .gitconfig            # Git config
 ├── .gitconfig-private    # Git private config (includeIf)
-├── .rubocop.yml          # RuboCop config
 ├── .tmux.conf            # tmux config (Catppuccin theme)
 ├── .vimrc                # Vim config (dein.vim)
 ├── .vscode/
 │   └── settings.json     # VSCode settings
 ├── .zprofile             # Zsh profile
 ├── .zshrc                # Zsh config
-├── Fonts/                # Fonts (Ricty Powerline)
 ├── git-completion.bash   # Git completion script
 ├── git-health.sh         # Git status check script
 ├── git-prompt.sh         # Git prompt display script
@@ -46,7 +44,6 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.gitconfig-private ~/.gitconfig-private
 ln -sf ~/dotfiles/.zprofile ~/.zprofile
-ln -sf ~/dotfiles/.rubocop.yml ~/.rubocop.yml
 mkdir -p ~/.config/ghostty ~/.config/yazi
 ln -sf ~/dotfiles/.config/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/.config/yazi/yazi.toml ~/.config/yazi/yazi.toml
@@ -66,10 +63,6 @@ sudo chmod +x /usr/local/bin/git-*.sh
 ```bash
 xargs brew install < ~/dotfiles/.brew-list
 ```
-
-### 5. Install fonts
-
-Double-click `Fonts/Ricty-Regular-Powerline.ttf` to install.
 
 ## Features
 
@@ -99,10 +92,11 @@ Double-click `Fonts/Ricty-Regular-Powerline.ttf` to install.
 
 ### tmux-ready.sh
 
-Dev session launcher. Creates a tmux session with 3 panes:
-1. Claude Code
-2. `bun dev`
-3. `health` (git status check)
+Dev session launcher. Creates a tmux session `dev` with 4 panes:
+1. `nvim .` (workspace)
+2. Claude Code
+3. `bun dev`
+4. `health` (git status check)
 
 ### Ghostty
 
