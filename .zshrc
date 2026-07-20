@@ -24,12 +24,20 @@ export LESSCHARSET=utf-8
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export HISTSIZE=10000
+
+# システム・Homebrew
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-export PATH="$HOME/bin:/usr/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/git/bin:/usr/local/share/git-core/contrib/diff-highlight:$PATH"
+
+# 開発ツール
+# mise（Node などのバージョン管理。volta から移行）
 eval "$(mise activate zsh)"
-export NOTION_TOKEN=""
-export NOTION_DATABASE_ID=""
+# NOTE: cmux 環境では _cmux_fix_path() が Resources/bin を PATH 先頭に自動配置する
+
+# MPC 関連設定（Keychain から取得）
+export NOTION_TOKEN="$(security find-generic-password -a "$USER" -s "NOTION_TOKEN" -w 2>/dev/null)"
+export NOTION_DATABASE_ID="$(security find-generic-password -a "$USER" -s "NOTION_DATABASE_ID" -w 2>/dev/null)"
 
 alias vi='/usr/bin/vim'
 alias vim='/usr/bin/vim'
@@ -54,13 +62,18 @@ alias port='lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | head -50'
 alias dcex='docker compose exec app bash'
 alias dcst='docker compose build && docker compose up'
 alias cat='bat'
+
+# Claude Code Agent Teams（複数エージェントが cmux/tmux ペインを自動作成）
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+
 # mise 環境では claude のバイナリが npm グローバルで管理されるため、
-# `claude update` でアップデートできるようシェル関数でラップしている
+# `claude update` でアップデートできるようシェル関数でラップしている。
+# 本体呼び出しは command claude 経由（cmux 環境ではフック注入 wrapper を尊重する）。
 claude() {
   if [ "$1" = "update" ]; then
     npm install -g @anthropic-ai/claude-code@latest
   else
-    "$(mise which claude 2>/dev/null || command -v claude)" "$@"
+    command claude "$@"
   fi
 }
 
@@ -113,16 +126,17 @@ alias claude-wt-ls='git worktree list'
 
 # yazi: 終了時にカレントディレクトリを同期するラッパー
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
 }
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
 # bun
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# git-wt: worktree 作成 + cd を自動化
+eval "$(git-wt --init zsh)"
