@@ -1,12 +1,21 @@
+# ========================
 # .bash_profile
+# ========================
 
+# 初回シェル時のみ tmux を実行
+# if [ "$SHLVL" = 1 ]; then
+#   tmux
+# fi
+
+# ユーザー設定読み込み
 [ -f ~/.bashrc ] && source ~/.bashrc
 
+# Homebrew 補完
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && \
   source "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
+# GVM
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-eval "$(mise activate bash)"
-
+# Homebrew のパス設定
 eval "$(/opt/homebrew/bin/brew shellenv)"
