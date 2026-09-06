@@ -73,6 +73,7 @@ xargs brew install < ~/dotfiles/.brew-list
 - mise for Node.js version management
 - fzf fuzzy finder integration
 - Git aliases: `gpo`, `wip`, `co`, `health`, `gpp`
+- Codex CLI completion and a `codex update` wrapper that defers to Homebrew
 
 ### Vim
 

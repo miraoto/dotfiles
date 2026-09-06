@@ -122,6 +122,20 @@ claude-wt-rm() {
 # 現在のリポジトリに紐づく worktree 一覧を表示する。
 alias claude-wt-ls='git worktree list'
 
+# Codex CLI（OpenAI）の zsh 補完
+eval "$(codex completion zsh)"
+
+# codex は Homebrew cask（/opt/homebrew/Caskroom/codex）で入れているため、
+# 内蔵の `codex update` で自己更新すると brew が持つバージョン情報と食い違う。
+# update だけ brew 側へ寄せ、それ以外は本体へそのまま渡す。
+codex() {
+  if [ "$1" = "update" ]; then
+    brew upgrade --cask codex
+  else
+    command codex "$@"
+  fi
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # yazi: 終了時にカレントディレクトリを同期するラッパー
