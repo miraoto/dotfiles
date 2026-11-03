@@ -5,8 +5,9 @@ SESSION="dev"
 tmux new-session -d -s $SESSION
 
 # editor
-tmux rename-window -t $SESSION:0 'workspace'
-tmux send-keys -t $SESSION:0 'nvim .' C-m
+# .tmux.conf で base-index 1 にしているため、最初のウィンドウは 1 番
+tmux rename-window -t $SESSION:1 'workspace'
+tmux send-keys -t $SESSION:1 'nvim .' C-m
 
 # split
 tmux split-window -h
