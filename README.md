@@ -10,7 +10,8 @@ dotfiles/
 ├── .bashrc               # Bash config
 ├── .brew-list            # Homebrew package list
 ├── .config/
-│   ├── ghostty/config    # Ghostty terminal config
+│   ├── cmux/cmux.json    # cmux config (Ghostty-based terminal for AI agents)
+│   ├── ghostty/config    # Ghostty terminal config (also read by cmux)
 │   └── yazi/yazi.toml    # Yazi file manager config
 ├── .gitconfig            # Git config
 ├── .gitconfig-private    # Git private config (includeIf)
@@ -44,8 +45,9 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.gitconfig-private ~/.gitconfig-private
 ln -sf ~/dotfiles/.zprofile ~/.zprofile
-mkdir -p ~/.config/ghostty ~/.config/yazi
+mkdir -p ~/.config/ghostty ~/.config/yazi ~/.config/cmux
 ln -sf ~/dotfiles/.config/ghostty/config ~/.config/ghostty/config
+ln -sf ~/dotfiles/.config/cmux/cmux.json ~/.config/cmux/cmux.json
 ln -sf ~/dotfiles/.config/yazi/yazi.toml ~/.config/yazi/yazi.toml
 ```
 

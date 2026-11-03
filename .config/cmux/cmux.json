@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  // 書いていない項目はアプリの設定画面の値（既定値）が使われる
+  // 編集後は `cmux reload-config` で再起動なしに反映できる
+
+  "app": {
+    // エージェントを並べて動かすと通知のたびに並びが変わり、位置を覚えられない。未読へは cmd+shift+u で飛ぶ
+    "reorderOnNotification": false,
+    "keepWorkspaceOpenWhenClosingLastSurface": true,
+    "sendAnonymousTelemetry": false
+  },
+
+  "notifications": {
+    // 枠の点滅と未読の印で気づける。エージェントが多いと音が鳴りすぎる
+    "sound": "none"
+  },
+
+  "sidebarAppearance": {
+    // サイドバーを Ghostty のテーマ（Catppuccin Mocha）の背景色に合わせる。版によって既定値が違うため明示する
+    "matchTerminalBackground": true
+  },
+
+  "automation": {
+    // 通知とサイドバーの状態表示はこの連携で動くので切らない
+    "claudeCodeIntegration": true
+  }
+}
