@@ -154,3 +154,18 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # git-wt: worktree 作成 + cd を自動化
 eval "$(git-wt --init zsh)"
+export PATH="$HOME/.local/bin:$PATH"
+
+# cmux: シェル起動時にワークスペース名をリポジトリ名へ変える
+# cmux は最初の precmd で PATH に入るため、.zshrc 読み込み時ではなく最初のプロンプト前に 1 回だけ実行する
+if [[ -n $CMUX_WORKSPACE_ID ]]; then
+  _cmux_title_repo() {
+    add-zsh-hook -d precmd _cmux_title_repo
+    local common
+    # worktree でもリポジトリ本体の名前を取るため --git-common-dir を使う
+    common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || return
+    command cmux workspace-action --action rename --title "${common:h:t}" >/dev/null 2>&1
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _cmux_title_repo
+fi

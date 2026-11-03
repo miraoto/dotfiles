@@ -60,7 +60,6 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # ---- バージョン管理ツール ----
-eval "$(rbenv init -)"
 # mise（Node などのバージョン管理。volta から移行）
 eval "$(mise activate bash)"
 

@@ -2,11 +2,10 @@
 
 SESSION="dev"
 
-tmux new-session -d -s $SESSION
-
 # editor
-tmux rename-window -t $SESSION:0 'workspace'
-tmux send-keys -t $SESSION:0 'nvim .' C-m
+# ウィンドウは番号ではなく名前で指定する（.tmux.conf の base-index に左右されないため）
+tmux new-session -d -s $SESSION -n workspace
+tmux send-keys -t $SESSION:workspace 'nvim .' C-m
 
 # split
 tmux split-window -h
